@@ -1,0 +1,33 @@
+module booth_tb;
+    reg [7:0] a, b;
+    reg clk, start;
+    wire [15:0] produs;
+    
+    booth inmultitor
+    (
+        .X(a),
+        .Y(b),
+        .clk(clk),
+        .start(start),
+        .produs(produs)
+    );
+    
+    initial begin
+        clk = 0;
+        repeat (2 * ((160 * 10) / 10)) #10 clk = ~clk;
+    end
+    
+    integer i;
+    
+    initial begin
+        b = 6;
+        $display("Tabla inmultirii cu %d", b);
+        for (i = 0; i <= 10; i = i + 1) begin
+          a = i;
+          start = 1;
+          #100 start = 0;
+          #160 $display("%d * %d = %d", b, a, produs);
+        end
+    end
+    
+endmodule

@@ -1,0 +1,8 @@
+module alu
+(
+    input [7:0] a, b,
+    input cin,
+    output [7:0] out
+);
+assign out = a + b + cin;
+endmodule
